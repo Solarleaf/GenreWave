@@ -1,0 +1,12 @@
+# .github/workflows/null.yml
+name: Null Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  do-nothing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: No-op
+        run: echo "This workflow only runs if triggered manually."
