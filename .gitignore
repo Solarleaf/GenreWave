@@ -1,5 +1,7 @@
 # FMA Files
 fma_metadata
+fma_small
+fma_small*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
