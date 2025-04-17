@@ -2,6 +2,7 @@
 fma_metadata
 fma_small
 fma_small*
+Layout.model.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
