@@ -1,0 +1,76 @@
+# FMA Files
+fma_metadata
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Environments
+.env
+.env.*
+*.env
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Mac OS
+.DS_Store
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Logs
+*.log
+
+# SQLite database
+*.sqlite3
+
+# MyPy / Pylint / other static analysis
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# Pytest cache
+.pytest_cache/
+
+# Others (customize as needed)
+*.bak
+*.tmp
+*.swp
