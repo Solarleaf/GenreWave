@@ -2,6 +2,14 @@
 
 Music Genre Classifier
 
+# How to Run
+
+Requires Python to run
+
+pip install -r requirements.txt
+
+When running the Jupyter networks, remember to set the Kernel properly.
+
 # data folder downloads:
 
 FMA Metadata ~342MB in Zipped format. 1.36GB unzipped.
