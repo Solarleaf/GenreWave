@@ -1,0 +1,5 @@
+- Look at different music databases
+- FMA has parent genres. Avant Garde 38 falls under Experimental
+- 2_MFCC_RF_Classifier
+    - Errors from some of the encodings can vary
+    - Errors from Some of the audio files are corrupted
