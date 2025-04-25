@@ -1,14 +1,14 @@
                precision    recall  f1-score   support
 
-   Electronic       0.54      0.32      0.40       201
- Experimental       0.41      0.24      0.31       196
-         Folk       0.41      0.68      0.51       193
-      Hip-Hop       0.47      0.69      0.56       195
- Instrumental       0.39      0.50      0.44       189
-International       0.54      0.46      0.50       220
-          Pop       0.27      0.13      0.17       202
-         Rock       0.56      0.64      0.60       203
+   Electronic       0.44      0.70      0.54       181
+ Experimental       0.46      0.30      0.36       213
+         Folk       0.58      0.49      0.53       214
+      Hip-Hop       0.57      0.65      0.61       186
+ Instrumental       0.56      0.52      0.54       204
+International       0.43      0.51      0.46       196
+          Pop       0.23      0.19      0.21       199
+         Rock       0.62      0.59      0.60       206
 
-     accuracy                           0.46      1599
-    macro avg       0.45      0.46      0.44      1599
- weighted avg       0.45      0.46      0.44      1599
+     accuracy                           0.49      1599
+    macro avg       0.49      0.49      0.48      1599
+ weighted avg       0.49      0.49      0.48      1599
