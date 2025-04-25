@@ -3,3 +3,17 @@
 - 2_MFCC_RF_Classifier
     - Errors from some of the encodings can vary
     - Errors from Some of the audio files are corrupted
+- 3.2
+Validation split and early stopping
+Plot training loss curves
+pre-genre accuracy stats
+ResNet18 model
+Save full inference-ready model
+weightedrandom sample?
+scikit-learn models
+chroma?
+
+
+tqdm, mel spectrograms, mfccs
+scikit-learn, pytorch
+seabon, metrics, F1
