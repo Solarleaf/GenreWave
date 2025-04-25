@@ -4,6 +4,7 @@
     - Errors from some of the encodings can vary
     - Errors from Some of the audio files are corrupted
 - 3.2
+train size is important
 Validation split and early stopping
 Plot training loss curves
 pre-genre accuracy stats
