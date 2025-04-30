@@ -1,0 +1,7 @@
+              precision    recall  f1-score   support
+
+        Rock       1.00      0.30      0.46       100
+
+   micro avg       1.00      0.30      0.46       100
+   macro avg       1.00      0.30      0.46       100
+weighted avg       1.00      0.30      0.46       100
