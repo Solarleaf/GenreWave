@@ -1,0 +1,64 @@
+music-genre-classifier/
+├── data/
+│   ├── fma_small/                           # ✅ 30s MP3 audio clips
+│   ├── fma_metadata/                        # ✅ Raw metadata: tracks.csv, genres.csv, etc.
+│   ├── valid_track_genres.csv               # ✅ Cleaned genre + subgenre mapping (fma_small filtered)
+│   ├── overall_tracks.csv                   # ✅ All valid genre mappings, not filtered by audio
+│   └── readme.md                            # 🛠️ Notes on dataset usage
+│
+├── features/
+│   ├── mfcc_features.npz                    # ✅ MFCCs extracted from fma_small
+│   ├── rf_test_outputs.npz                  # ✅ Random Forest predictions and test set
+│   ├── lstm_mfcc/                           # ✅ MFCC sequence inputs for LSTM classifier
+│   └── features.md                          # 🛠️ Notes on MFCC/chroma/spectrogram options
+│
+├── models/
+│   ├── rf_model.pkl                         # ✅ Trained Random Forest model (MFCC)
+│   ├── cnn_model.pth                        # ✅ Baseline CNN model (SimpleCNN)
+│   ├── best_cnnv2_model.pth                 # ✅ Improved CNNv2 with early stopping
+│   ├── cnn_inference_bundle.pth             # ✅ Bundle for inference: model + transforms + labels
+│   ├── cnnv2_inference_bundle.pth           # ✅ Updated inference bundle (CNNv2)
+│   ├── lstm_genre_classifier.pth            # ✅ LSTM model trained on MFCC sequences
+│   └── models.md                            # 🛠️ Model version notes, baseline vs improved
+│
+├── reports/
+│   ├── 1_Explore_Metadata/                  # ✅ Metadata visualizations
+│   │   ├── top_level_genres.png             # ✅ Distribution of genre_top
+│   │   ├── subgenres_1_to_15.png            # ✅ Top subgenres visualized
+│   │   ├── overall_tracks.csv               # ✅ Raw from all metadata
+│   │   └── valid_track_genres.csv           # ✅ Filtered to fma_small
+│   ├── 2_MFCC_RF_Classifier/                # ✅ Random Forest output reports
+│   │   ├── rf_classification_report.txt     # ✅ Full classification stats
+│   │   ├── rf_confusion_matrix.png          # ✅ Visual matrix
+│   │   ├── used_tracks.csv                  # ✅ Successfully processed audio files
+│   │   ├── failed_tracks.csv                # ✅ Audio files with issues
+│   │   └── genre_subgenre_counts.csv        # ✅ Count summaries
+│   ├── 3_CNN_Spectrogram_Classifier/        # ✅ SimpleCNN outputs
+│   │   ├── cnn_classification_report.txt    # ✅ Per-genre stats
+│   │   └── cnn_confusion_matrix.png         # ✅ CNN confusion matrix
+│   ├── 3_CNNv2_Spectrogram/                 # ✅ CNNv2 outputs
+│   │   ├── cnnv2_classification_report.txt  # ✅ Improved CNN metrics
+│   │   ├── cnnv2_confusion_matrix.png       # ✅ CNNv2 confusion matrix
+│   │   └── cnnv2_loss_curve.png             # ✅ Training vs validation loss
+│
+├── spectrograms/
+│   ├── [genre folders]/                     # ✅ RGB mel-spectrograms per genre
+│   └── spectrograms.md                      # 🛠️ Placeholder/notes on CNN input format
+│
+├── notebooks/
+│   ├── 1_Explore_Metadata.ipynb             # ✅ Metadata pipeline + plots
+│   ├── 2_MFCC_RF_Classifier.ipynb           # ✅ MFCC extraction + RF classifier
+│   ├── 3.1_Generate_Spectrograms.ipynb      # ✅ Generate RGB spectrogram images
+│   ├── 3.2_CNN_Spectrogram_Classifier.ipynb # ✅ SimpleCNN training + evaluation
+│   ├── 3.3_CNN_Spectrogram_Classifier_v2.ipynb # ✅ CNNv2 training w/ early stopping
+│   ├── LSTM_MFCC.ipynb                      # ✅ LSTM pipeline on MFCC sequences
+│   ├── classify_new_song.ipynb              # 🛠️ Placeholder or interface for inference
+│   └── notebooks.md                         # 🛠️ Notebook changelog or summaries
+│
+├── classify_new_song.py                     # ❌ Unused — logic likely moved to notebook version
+├── utils.py                                 # ✅ Helper functions (pending full parsing)
+├── project.md                               # ✅ Project log with sessions, todos, blockers
+├── code_structure.md                        # ✅ Per-file function/class map with line refs
+├── requirements.txt                         # ✅ Python dependencies list
+├── Todo.md                                  # 🛠️ Project TODO checklist
+└── UsefulCommands.md                        # 🛠️ Helper shell/scripts reference
