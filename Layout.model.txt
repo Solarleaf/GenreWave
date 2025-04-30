@@ -4,6 +4,7 @@ music-genre-classifier/
 │   ├── fma_metadata/                        # ✅ Raw metadata: tracks.csv, genres.csv, etc.
 │   ├── valid_track_genres.csv               # ✅ Cleaned genre + subgenre mapping (fma_small filtered)
 │   ├── overall_tracks.csv                   # ✅ All valid genre mappings, not filtered by audio
+│   ├── Songs/                               # ✅ Input folder for classifying new user songs
 │   └── readme.md                            # 🛠️ Notes on dataset usage
 │
 ├── features/
@@ -23,23 +24,10 @@ music-genre-classifier/
 │
 ├── reports/
 │   ├── 1_Explore_Metadata/                  # ✅ Metadata visualizations
-│   │   ├── top_level_genres.png             # ✅ Distribution of genre_top
-│   │   ├── subgenres_1_to_15.png            # ✅ Top subgenres visualized
-│   │   ├── overall_tracks.csv               # ✅ Raw from all metadata
-│   │   └── valid_track_genres.csv           # ✅ Filtered to fma_small
 │   ├── 2_MFCC_RF_Classifier/                # ✅ Random Forest output reports
-│   │   ├── rf_classification_report.txt     # ✅ Full classification stats
-│   │   ├── rf_confusion_matrix.png          # ✅ Visual matrix
-│   │   ├── used_tracks.csv                  # ✅ Successfully processed audio files
-│   │   ├── failed_tracks.csv                # ✅ Audio files with issues
-│   │   └── genre_subgenre_counts.csv        # ✅ Count summaries
 │   ├── 3_CNN_Spectrogram_Classifier/        # ✅ SimpleCNN outputs
-│   │   ├── cnn_classification_report.txt    # ✅ Per-genre stats
-│   │   └── cnn_confusion_matrix.png         # ✅ CNN confusion matrix
-│   ├── 3_CNNv2_Spectrogram/                 # ✅ CNNv2 outputs
-│   │   ├── cnnv2_classification_report.txt  # ✅ Improved CNN metrics
-│   │   ├── cnnv2_confusion_matrix.png       # ✅ CNNv2 confusion matrix
-│   │   └── cnnv2_loss_curve.png             # ✅ Training vs validation loss
+│   ├── 3_CNNv2_Spectrogram_Classifier/      # ✅ CNNv2 outputs
+│   └── 4_Classify_New_Song/                 # ✅ New song predictions and graphs
 │
 ├── spectrograms/
 │   ├── [genre folders]/                     # ✅ RGB mel-spectrograms per genre
@@ -52,11 +40,9 @@ music-genre-classifier/
 │   ├── 3.2_CNN_Spectrogram_Classifier.ipynb # ✅ SimpleCNN training + evaluation
 │   ├── 3.3_CNN_Spectrogram_Classifier_v2.ipynb # ✅ CNNv2 training w/ early stopping
 │   ├── LSTM_MFCC.ipynb                      # ✅ LSTM pipeline on MFCC sequences
-│   ├── classify_new_song.ipynb              # 🛠️ Placeholder or interface for inference
+│   ├── classify_new_song.ipynb              # 🛠️ Unified genre classifier (multi-model)
 │   └── notebooks.md                         # 🛠️ Notebook changelog or summaries
 │
-├── classify_new_song.py                     # ❌ Unused — logic likely moved to notebook version
-├── utils.py                                 # ✅ Helper functions (pending full parsing)
 ├── project.md                               # ✅ Project log with sessions, todos, blockers
 ├── code_structure.md                        # ✅ Per-file function/class map with line refs
 ├── requirements.txt                         # ✅ Python dependencies list
