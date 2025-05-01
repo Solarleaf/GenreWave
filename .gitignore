@@ -76,3 +76,15 @@ coverage.xml
 *.bak
 *.tmp
 *.swp
+
+# --------------------------------
+# TFHub model cache (auto-downloaded models)
+notebooks/.tfhub_cache/
+.tfhub_cache/
+
+# Data 
+musicData/
+
+# Python cache
+__pycache__/
+*.pyc
