@@ -1,0 +1,16 @@
+To run Yamnet Model follow these steps,
+
+- access cscigpu server -> cd /research2/<yourusername> 
+
+- create virtual environment using conda:
+
+	•	conda create -n genrewave python=3.9 -y
+
+	•	conda activate genrewave
+
+	•	conda install -c conda-forge tensorflow=2.12 numpy=1.23.5 tensorflow-hub librosa pandas scikit-learn matplotlib joblib
+
+	•	If encounter an error with missing tensorflow eg, “ModuleNotFoundError: No module named 'tensorflow’” run this command,
+
+		  - conda install -c conda-forge tensorflow=2.12
+
