@@ -1,5 +1,5 @@
-# L 4-23-25
-# notebooks/step_3_1_Gen_Spectro.py
+# step_3_1_Gen_Spectro.py
+# Converted from Jupyter Notebook to standalone script (L 4-23-25)
 
 import os
 import gc
@@ -11,15 +11,16 @@ import pandas as pd
 from PIL import Image
 import matplotlib
 
-matplotlib.use("Agg")  # headless image rendering
+# Use non-interactive backend for image rendering
+matplotlib.use("Agg")
 
 # Default constants
 IMG_SIZE = 128
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DEFAULT_CSV_PATH = os.path.join(
-    BASE_DIR, "../reports/2_MFCC_RF_Classifier/used_tracks.csv")
-DEFAULT_AUDIO_DIR = os.path.join(BASE_DIR, "../data/fma_small")
-DEFAULT_OUTPUT_DIR = os.path.join(BASE_DIR, "../spectrograms")
+    PROJECT_ROOT, "reports/2_MFCC_RF_Classifier/used_tracks.csv")
+DEFAULT_AUDIO_DIR = os.path.join(PROJECT_ROOT, "data/fma_small")
+DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "spectrograms")
 
 
 def generate_spectrogram(input_path, output_path, img_size=IMG_SIZE):
@@ -56,7 +57,7 @@ def generate_spectrograms_from_csv(csv_path, audio_dir, output_dir, img_size=IMG
         return
 
     df = pd.read_csv(csv_path)
-    print(f"[INFO] Generating spectrograms for {len(df)} tracks from CSV")
+    print(f"[INFO] Verifying spectrograms for {len(df)} tracks")
 
     for _, row in df.iterrows():
         track_id = str(row["track_id"]).zfill(6)
@@ -67,37 +68,51 @@ def generate_spectrograms_from_csv(csv_path, audio_dir, output_dir, img_size=IMG
         os.makedirs(output_genre_path, exist_ok=True)
         output_path = os.path.join(output_genre_path, f"{track_id}.png")
 
-        if not os.path.exists(output_path):
+        if not os.path.isfile(output_path):
             generate_spectrogram(audio_path, output_path, img_size)
 
 
 def generate_spectrograms_from_folder(song_dir, output_dir, img_size=IMG_SIZE):
-    """Generate spectrograms from a folder structured by genre with MP3 files."""
-    print(f"[INFO] Generating spectrograms from folder: {song_dir}")
+    """
+    Generate spectrograms from a folder structure:
+    song_dir/
+        genre1/
+            song1.mp3
+            song2.mp3
+        genre2/
+            ...
+    """
+    print(f"[INFO] Generating spectrograms from: {song_dir}")
 
-    for genre in os.listdir(song_dir):
-        genre_dir = os.path.join(song_dir, genre)
-        if not os.path.isdir(genre_dir):
+    for genre_name in os.listdir(song_dir):
+        genre_path = os.path.join(song_dir, genre_name)
+        if not os.path.isdir(genre_path):
             continue
 
-        output_genre_path = os.path.join(output_dir, genre)
+        output_genre_path = os.path.join(output_dir, genre_name)
         os.makedirs(output_genre_path, exist_ok=True)
 
-        for fname in os.listdir(genre_dir):
-            if not fname.endswith(".mp3"):
+        for file_name in os.listdir(genre_path):
+            if not file_name.lower().endswith(".mp3"):
                 continue
-            audio_path = os.path.join(genre_dir, fname)
-            output_path = os.path.join(
-                output_genre_path, f"{os.path.splitext(fname)[0]}.png")
+
+            base_name = os.path.splitext(file_name)[0]
+            input_path = os.path.join(genre_path, file_name)
+            output_path = os.path.join(output_genre_path, f"{base_name}.png")
 
             if not os.path.exists(output_path):
-                generate_spectrogram(audio_path, output_path, img_size)
+                generate_spectrogram(input_path, output_path, img_size)
+
+
+def generate_all(csv_path=DEFAULT_CSV_PATH, audio_dir=DEFAULT_AUDIO_DIR, output_dir=DEFAULT_OUTPUT_DIR, img_size=IMG_SIZE):
+    """Entry function to generate all spectrograms with optional custom paths."""
+    if os.path.isfile(csv_path):
+        generate_spectrograms_from_csv(
+            csv_path, audio_dir, output_dir, img_size)
+    else:
+        print(
+            f"[WARNING] CSV not found: {csv_path}. No spectrograms generated.")
 
 
 if __name__ == "__main__":
-    if os.path.isfile(DEFAULT_CSV_PATH):
-        generate_spectrograms_from_csv(
-            DEFAULT_CSV_PATH, DEFAULT_AUDIO_DIR, DEFAULT_OUTPUT_DIR, IMG_SIZE)
-    else:
-        print(
-            f"[WARNING] Default CSV not found: {DEFAULT_CSV_PATH}. No spectrograms generated.")
+    generate_all()  # Uses default paths

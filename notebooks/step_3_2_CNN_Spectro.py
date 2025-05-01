@@ -11,19 +11,18 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix, precision_recall_fscore_support
 import numpy as np
 import pandas as pd
+from PIL import Image
 
-# === Constants ===
+# Constants
 IMG_SIZE = 128
 BATCH_SIZE = 32
 EPOCHS = 5
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_DATA_DIR = os.path.join(BASE_DIR, "../spectrograms")
-DEFAULT_REPORT_DIR = os.path.join(
-    BASE_DIR, "../reports/3_CNN_Spectrogram_Classifier")
-DEFAULT_MODEL_PATH = os.path.join(BASE_DIR, "../models/cnn_model.pth")
-DEFAULT_BUNDLE_PATH = os.path.join(
-    BASE_DIR, "../models/cnn_inference_bundle.pth")
+DATA_DIR = os.path.join(BASE_DIR, "../spectrograms")
+REPORT_DIR = os.path.join(BASE_DIR, "../reports/3_CNN_Spectrogram_Classifier")
+MODEL_PATH = os.path.join(REPORT_DIR, "cnn_model.pth")
+BUNDLE_PATH = os.path.join(REPORT_DIR, "cnn_inference_bundle.pth")
 
 
 class SimpleCNN(nn.Module):
@@ -47,10 +46,49 @@ class SimpleCNN(nn.Module):
         return self.classifier(x)
 
 
-def run_training(data_dir, report_dir):
-    os.makedirs(report_dir, exist_ok=True)
+def cnn_predict_folder(bundle_path, image_dir):
+    bundle = torch.load(bundle_path, map_location=torch.device('cpu'))
+
+    model = SimpleCNN(num_classes=len(bundle['class_names']))
+    model.load_state_dict(bundle['model_state_dict'])
+    model.eval()
+
+    transform = bundle['transform']
+    class_names = bundle['class_names']
+
+    predictions = []
+
+    for genre in os.listdir(image_dir):
+        genre_path = os.path.join(image_dir, genre)
+        if not os.path.isdir(genre_path):
+            continue
+
+        for img_file in os.listdir(genre_path):
+            if not img_file.endswith(".png"):
+                continue
+
+            img_path = os.path.join(genre_path, img_file)
+            try:
+                image = Image.open(img_path).convert("RGB")
+                input_tensor = transform(image).unsqueeze(0)  # add batch dim
+                with torch.no_grad():
+                    outputs = model(input_tensor)
+                    _, pred = torch.max(outputs, 1)
+                    predictions.append({
+                        "file": img_file,
+                        "true_genre": genre,
+                        "CNN": class_names[pred.item()]
+                    })
+            except Exception as e:
+                print(f"[ERROR] CNN inference failed for {img_path}: {e}")
+
+    return pd.DataFrame(predictions)
+
+
+def run():
+    os.makedirs(REPORT_DIR, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    print(f"[INFO] Training CNN on: {data_dir}")
+    print(f"[INFO] Training CNN on: {DATA_DIR}")
 
     transform = transforms.Compose([
         transforms.Resize((IMG_SIZE, IMG_SIZE)),
@@ -58,7 +96,7 @@ def run_training(data_dir, report_dir):
         transforms.Normalize([0.5]*3, [0.5]*3)
     ])
 
-    dataset = datasets.ImageFolder(data_dir, transform=transform)
+    dataset = datasets.ImageFolder(DATA_DIR, transform=transform)
     class_names = dataset.classes
 
     train_size = int(0.8 * len(dataset))
@@ -89,13 +127,13 @@ def run_training(data_dir, report_dir):
         print(f"[INFO] Epoch {epoch+1}, Loss: {avg_loss:.4f}")
 
     # Save model and bundle
-    torch.save(model.state_dict(), DEFAULT_MODEL_PATH)
+    torch.save(model.state_dict(), MODEL_PATH)
     torch.save({
         'model_state_dict': model.state_dict(),
         'class_names': class_names,
         'transform': transform,
         'img_size': IMG_SIZE,
-    }, DEFAULT_BUNDLE_PATH)
+    }, BUNDLE_PATH)
 
     # Evaluation
     model.eval()
@@ -109,11 +147,10 @@ def run_training(data_dir, report_dir):
             y_pred.extend(preds.cpu().numpy())
 
     report = classification_report(y_true, y_pred, target_names=class_names)
-    with open(os.path.join(report_dir, "cnn_classification_report.txt"), "w") as f:
+    with open(os.path.join(REPORT_DIR, "cnn_classification_report.txt"), "w") as f:
         f.write(report)
     print(report)
 
-    # Confusion Matrix
     cm = confusion_matrix(y_true, y_pred)
     plt.figure(figsize=(10, 8))
     plt.imshow(cm, cmap="Blues", interpolation="nearest")
@@ -124,10 +161,9 @@ def run_training(data_dir, report_dir):
     plt.xlabel("Predicted")
     plt.ylabel("True")
     plt.tight_layout()
-    plt.savefig(os.path.join(report_dir, "cnn_confusion_matrix.png"))
+    plt.savefig(os.path.join(REPORT_DIR, "cnn_confusion_matrix.png"))
     plt.close()
 
-    # Per-genre metrics
     precision, recall, f1, _ = precision_recall_fscore_support(
         y_true, y_pred, labels=range(len(class_names)), zero_division=0)
     metrics = {"Precision": precision, "Recall": recall, "F1-Score": f1}
@@ -139,17 +175,9 @@ def run_training(data_dir, report_dir):
         plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
         fname = f"cnn_{metric_name.lower().replace('-', '_')}_bar.png"
-        plt.savefig(os.path.join(report_dir, fname))
+        plt.savefig(os.path.join(REPORT_DIR, fname))
         plt.close()
 
 
-def main():
-    if os.path.isdir(DEFAULT_DATA_DIR):
-        run_training(DEFAULT_DATA_DIR, DEFAULT_REPORT_DIR)
-    else:
-        print(
-            f"[WARNING] Spectrograms folder not found: {DEFAULT_DATA_DIR}. Nothing to train on.")
-
-
 if __name__ == "__main__":
-    main()
+    run()
