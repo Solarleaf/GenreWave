@@ -18,7 +18,7 @@ matplotlib.use("Agg")
 IMG_SIZE = 128
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 DEFAULT_CSV_PATH = os.path.join(
-    PROJECT_ROOT, "reports/2_MFCC_RF_Classifier/used_tracks.csv")
+    PROJECT_ROOT, "reports/step_2_MFCC_RF/used_tracks.csv")
 DEFAULT_AUDIO_DIR = os.path.join(PROJECT_ROOT, "data/fma_small")
 DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "spectrograms")
 
