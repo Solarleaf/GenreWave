@@ -1,81 +1,116 @@
 file,true_genre,CNN
-Abandoned_Culture_-_Solxis.png,Electronic,Hip-Hop
-Burned_Sky_-_revolutionvoid.png,Electronic,Hip-Hop
-Daunting_Scandal_-_Solxis.png,Electronic,International
-Do_not_blink_-_Xytum.png,Electronic,Hip-Hop
-Electric_Chronic_-_Social_Bot.png,Electronic,Electronic
-Mineral_-_HRCRX.png,Electronic,Instrumental
-Pangea_-_Professor_Kliq.png,Electronic,Hip-Hop
-power_version_-_HiFi_Hustlers.png,Electronic,Hip-Hop
-Serenity_-_TheVicious.png,Electronic,Hip-Hop
-Starflex_-_StatueOfDiveo.png,Electronic,Experimental
-Synthesis_-_Xytum.png,Electronic,Hip-Hop
-The_Moon_-_zibbon.png,Electronic,Instrumental
-Work_At_Night_-_Professor_Kliq.png,Electronic,Hip-Hop
-Anemoia - Monitor.png,Experimental,Instrumental
-human gazpacho - a rabbit's scream.png,Experimental,Experimental
-human gazpacho - automation and robotics.png,Experimental,Instrumental
-human gazpacho - movement in the cornfield.png,Experimental,Experimental
-human gazpacho - strawberry basil.png,Experimental,Instrumental
-human gazpacho - this forest older than god.png,Experimental,Instrumental
-human gazpacho - those aren't human footprints.png,Experimental,Folk
-Ihsan & The Cabinet of Dr. Caligari - Bizarre Machines.png,Experimental,Experimental
-Ihsan & The Cabinet of Dr. Caligari - Gravity is a Toxin.png,Experimental,Rock
-Koi-discovery - Lilith_is_gone.mp3.png,Experimental,Instrumental
-Acoustic_Astronaut_-_Destruction_Mill_©2023_by_Acoustic_Astronaut™.png,Folk,Hip-Hop
-Athens_-_Pierce_Murphy.png,Folk,Pop
-Come_On_Come_On_-_Tamara_Laurel.png,Folk,International
-Julius_Marx_-_Vices_-_Julius_Marx.png,Folk,Hip-Hop
-Kavi_Jezzie_Hockaday_-_Forget_About_Tomorrow.png,Folk,Instrumental
-Medicine_-_Kevin_Milner_and_Piero_Peluche.png,Folk,Hip-Hop
-No_Matter_How_Far_-_Kyle_Cox_(3).png,Folk,Instrumental
-Orange_Juice_-_Sonia_Isabel.png,Folk,Folk
-Polaris_(feat._Daria_Shakhova)_-_So_Far_As_I_Know_(2).png,Folk,Folk
-Talk_To_Me_-_Allie_Farris.png,Folk,Pop
-Tiptoe_-_Rivers_and_Leafs_(2).png,Folk,Folk
-Walk_Tonight_-_Charlie_Mosbrook_(2).png,Folk,Folk
-Anitek_-_Tab_+_Anitek_-_Bleach.png,Hip-Hop,Hip-Hop
-Anitek_-_Tab_x_Anitek_-_MUSICO.png,Hip-Hop,Hip-Hop
-Anyway_-_Produced_by_J._Glaze_-_Kellee_Maize.png,Hip-Hop,Hip-Hop
-Boukmanflow_-_Does_she_not.png,Hip-Hop,Hip-Hop
-Boulvard_X-Audi_-_We_Fading.png,Hip-Hop,Hip-Hop
-Cerebro_reptiliano(Prod.K.El_Nigromante)_-_Edfish_(3).png,Hip-Hop,Hip-Hop
-In_Tune_-_Kellee_Maize.png,Hip-Hop,Hip-Hop
-Shadows_-_Tomas_Gomez.png,Hip-Hop,Electronic
-Tab_-_Search_for_Eden_(feat._Aurc).png,Hip-Hop,Hip-Hop
-Tom_Orlando_-_Fade_Away_[Radio_Edit].png,Hip-Hop,Pop
-Charlie Lewis - But I Don't Know.png,Instrumental,Instrumental
-Hawkin - Woods.png,Instrumental,Experimental
-Il Sogno Del Marinaio - Partisian Song.png,Instrumental,Instrumental
-Jahzzar - Change.png,Instrumental,Hip-Hop
-JBlanked - Many Blessings (Instrumental).png,Instrumental,Instrumental
-SalmonLikeTheFish - Glacier.png,Instrumental,Instrumental
-SalmonLikeTheFish - Sequoia.png,Instrumental,Instrumental
-SalmonLikeTheFish - Yellowstone.png,Instrumental,Instrumental
-SalmonLikeTheFish - Zion.png,Instrumental,Instrumental
-Squire Tuck - Beyond Reason.png,Instrumental,Instrumental
-Squire Tuck - Heavy Heart.png,Instrumental,Instrumental
-The Sluts With Nuts - Instrumental Prelude.png,Instrumental,Experimental
-Dengue Fever - Girl From The North.png,International,Folk
-Dengue Fever - Sober Driver.png,International,Instrumental
-Getatchew Mekuria &amp; The Ex &amp; Guests - Eywat Setenafegagn.png,International,International
-Isra-Alien Band - Schuna.png,International,Folk
-Isra-Alien Band - Solo Aris.png,International,International
-Isra-Alien Band - Tavas Hazahav.png,International,International
-Supruli - Dideba Maghalta Shina.png,International,Experimental
-"Tenores de Aterúe - Alleluia, No Nobis.png",International,International
-The Sounds of Taraab - Daka Kozi Manowe.png,International,International
-The Sounds of Taraab - Nie Zama Nie Sema.png,International,International
-Alone_-_Nehilo_-_Nehilo.png,Pop,Hip-Hop
-Bessonn&amp;sa_-_Dance_All_Night.png,Pop,Hip-Hop
-Bessonn&amp;sa_-_Like_Before.png,Pop,Electronic
-Better_-_Square_a_Saw.png,Pop,Hip-Hop
-Chocolate_-_Alfonso_Lugo.png,Pop,Hip-Hop
-GK_Menage_-_WALK_THRU_MY_DOOR.png,Pop,Folk
-Gone_-_Michael_McEachern.png,Pop,Folk
-Kevin_S._-_Reflections_(feat._Mathias_Hagen).png,Pop,Pop
-lilac_frog_-_Reason_to_Stay_(feat._undy).png,Pop,Pop
-Neon_NiteClub_-_Be_Without_U.png,Pop,Hip-Hop
+AbandonedCultureSolxis.png,Electronic,Hip-Hop
+BrylieChristopherOxleyMelancholyAurora.png,Electronic,Instrumental
+BurnedSkyrevolutionvoid.png,Electronic,Hip-Hop
+crypticsceneryMorgengrauen.png,Electronic,Instrumental
+DauntingScandalSolxis.png,Electronic,International
+DonotblinkXytum.png,Electronic,Hip-Hop
+ElectricChronicSocialBot.png,Electronic,Electronic
+MegatoneElectron.png,Electronic,Experimental
+MineralHRCRX.png,Electronic,Instrumental
+PangeaProfessorKliq.png,Electronic,Hip-Hop
+powerversionHiFiHustlers.png,Electronic,Hip-Hop
+SerenityTheVicious.png,Electronic,Hip-Hop
+StarflexStatueOfDiveo.png,Electronic,Experimental
+SynthesisXytum.png,Electronic,Hip-Hop
+TheMoonzibbon.png,Electronic,Instrumental
+WolfAsylumZorthos.png,Electronic,Hip-Hop
+WorkAtNightProfessorKliq.png,Electronic,Hip-Hop
+AnemoiaMonitor.png,Experimental,Instrumental
+DiogenesInHellAsWeCountOurDays.png,Experimental,Instrumental
+humangazpachoarabbitsscream.png,Experimental,Experimental
+humangazpachoautomationandrobotics.png,Experimental,Instrumental
+humangazpachomovementinthecornfield.png,Experimental,Experimental
+humangazpachostrawberrybasil.png,Experimental,Instrumental
+humangazpachothisforestolderthangod.png,Experimental,Instrumental
+humangazpachothosearenthumanfootprints.png,Experimental,Folk
+IhsanTheCabinetofDrCaligariBizarreMachines.png,Experimental,Experimental
+IhsanTheCabinetofDrCaligariGravityisaToxin.png,Experimental,Rock
+KarlBlauGnosLevohs.png,Experimental,Folk
+KoidiscoveryLilithisgonemp.png,Experimental,Instrumental
+PrinceRamaRestInPeace.png,Experimental,Pop
+XquiOrange.png,Experimental,Instrumental
+AcousticAstronautDestructionMillbyAcousticAstronaut.png,Folk,Hip-Hop
+AllisterThompsonTheOldMiner.png,Folk,Folk
+AnEagleInYourMindFlows.png,Folk,Hip-Hop
+AnEagleInYourMindGreenGrass.png,Folk,Folk
+AthensPierceMurphy.png,Folk,Pop
+ComeOnComeOnTamaraLaurel.png,Folk,International
+JuliusMarxVicesJuliusMarx.png,Folk,Hip-Hop
+KaviJezzieHockadayForgetAboutTomorrow.png,Folk,Instrumental
+MedicineKevinMilnerandPieroPeluche.png,Folk,Hip-Hop
+NoMatterHowFarKyleCox.png,Folk,Instrumental
+OrangeJuiceSoniaIsabel.png,Folk,Folk
+PhilippaDowdingandAllisterThompsonFall.png,Folk,Experimental
+PolarisfeatDariaShakhovaSoFarAsIKnow.png,Folk,Folk
+TalkToMeAllieFarris.png,Folk,Pop
+TheWyldOldeSoulsMaybe.png,Folk,Folk
+TiptoeRiversandLeafs.png,Folk,Folk
+WalkTonightCharlieMosbrook.png,Folk,Folk
+AnitekTabAnitekBleach.png,Hip-Hop,Hip-Hop
+AnitekTabxAnitekMUSICO.png,Hip-Hop,Hip-Hop
+AnywayProducedbyJGlazeKelleeMaize.png,Hip-Hop,Hip-Hop
+BoukmanflowDoesshenot.png,Hip-Hop,Hip-Hop
+BoulvardXAudiWeFading.png,Hip-Hop,Hip-Hop
+BrakhageIntro.png,Hip-Hop,Pop
+CerebroreptilianoProdKElNigromanteEdfish.png,Hip-Hop,Hip-Hop
+InTuneKelleeMaize.png,Hip-Hop,Hip-Hop
+JointCBeatLaboratoryDelete.png,Hip-Hop,Hip-Hop
+JointCBeatLaboratoryMargo.png,Hip-Hop,Instrumental
+JointCBeatLaboratoryRa.png,Hip-Hop,Electronic
+LowtoneMusicInspirationHipHop.png,Hip-Hop,Instrumental
+ShadowsTomasGomez.png,Hip-Hop,Electronic
+TabSearchforEdenfeatAurc.png,Hip-Hop,Hip-Hop
+TomOrlandoFadeAwayRadioEdit.png,Hip-Hop,Pop
+CharlieLewisButIDontKnow.png,Instrumental,Instrumental
+HawkinWoods.png,Instrumental,Experimental
+IlSognoDelMarinaioPartisianSong.png,Instrumental,Instrumental
+JahzzarChange.png,Instrumental,Hip-Hop
+JBlankedBastardboyProductionHerbal.png,Instrumental,Electronic
+JBlankedManyBlessingsInstrumental.png,Instrumental,Instrumental
+johnnyripperLille.png,Instrumental,Instrumental
+KateKodyButterfly.png,Instrumental,Folk
+KateKodyGalacticChoir.png,Instrumental,Instrumental
+SalmonLikeTheFishGlacier.png,Instrumental,Instrumental
+SalmonLikeTheFishSequoia.png,Instrumental,Instrumental
+SalmonLikeTheFishYellowstone.png,Instrumental,Instrumental
+SalmonLikeTheFishZion.png,Instrumental,Instrumental
+SquireTuckBeyondReason.png,Instrumental,Instrumental
+SquireTuckHeavyHeart.png,Instrumental,Instrumental
+DengueFeverGirlFromTheNorth.png,International,Folk
+DengueFeverSoberDriver.png,International,Instrumental
+FreeSoulSchoolSwitzerlandNana.png,International,Folk
+GetatchewMekuriaampTheExampGuestsEywatSetenafegagn.png,International,International
+IsraAlienBandSchuna.png,International,Folk
+IsraAlienBandSoloAris.png,International,International
+IsraAlienBandTavasHazahav.png,International,International
+RayaBrassBandPiperkovoOro.png,International,International
+SupruliDidebaMaghaltaShina.png,International,Experimental
+SupruliOcheshkhvei.png,International,International
+SvitanyaSzerelem.png,International,International
+TaaPetNotEnough.png,International,Electronic
+TenoresdeAtereAlleluiaNoNobis.png,International,International
+TheSoundsofTaraabDakaKoziManowe.png,International,International
+TheSoundsofTaraabLalaMpenziLala.png,International,Instrumental
+TheSoundsofTaraabNieZamaNieSema.png,International,International
+AloneNehiloNehilo.png,Pop,Hip-Hop
+AmilByleckieOwlbeyours.png,Pop,Hip-Hop
+BessonnampsaDanceAllNight.png,Pop,Hip-Hop
+BessonnampsaLikeBefore.png,Pop,Electronic
+BetterSquareaSaw.png,Pop,Hip-Hop
+ChocolateAlfonsoLugo.png,Pop,Hip-Hop
+ErgoPhizmizandtheMidnightFloristsBlueDaBaDee.png,Pop,Experimental
+ErgoPhizmizandtheMidnightFloristsGonnaMakeYouSweat.png,Pop,International
+ErgoPhizmizandtheMidnightFloristsGrooveIsInTheHeart.png,Pop,Pop
+ErgoPhizmizandtheMidnightFloristsRhythmisaDancer.png,Pop,International
+ErgoPhizmizSimonSimonHoliday.png,Pop,International
+GKMenageWALKTHRUMYDOOR.png,Pop,Folk
+GoneMichaelMcEachern.png,Pop,Folk
+KevinSReflectionsfeatMathiasHagen.png,Pop,Pop
+lilacfrogReasontoStayfeatundy.png,Pop,Pop
+NeonNiteClubBeWithoutU.png,Pop,Hip-Hop
+SimonMathewsonFallingForYou.png,Pop,Folk
+ZaneLittleGotaFeeling.png,Pop,Hip-Hop
 ACDCBackInBlack.png,Rock,Hip-Hop
 AerosmithWalkThisWay.png,Rock,Hip-Hop
 AliceCooperSchoolsOut.png,Rock,Rock
