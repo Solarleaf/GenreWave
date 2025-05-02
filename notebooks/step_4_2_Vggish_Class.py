@@ -18,17 +18,19 @@ DEFAULT_REPORT_DIR = os.path.join(
     PROJECT_ROOT, "reports/step_4_2_vggish_class")
 DEFAULT_MODEL_SAVE_PATH = os.path.join(
     PROJECT_ROOT, "models/vggish_rf_model.pkl")
+DEFAULT_CLASS_NAMES_PATH = os.path.join(
+    DEFAULT_REPORT_DIR, "vggish_rf_class_names.npy")
 
 os.makedirs(DEFAULT_REPORT_DIR, exist_ok=True)
 
 
 def load_metadata(metadata_file, embedding_dir):
-    df = pd.read_csv(metadata_file)
-    available_ids = {int(f.split(".")[0]) for f in os.listdir(
+    df = pd.read_csv(metadata_file, dtype={"track_id": str})
+    available_ids = {f.split(".")[0] for f in os.listdir(
         embedding_dir) if f.endswith(".npy")}
-    df = df[df["track_id"].isin(available_ids)]
+    df = df[df["track_id"].astype(str).isin(available_ids)]
     df['label'] = LabelEncoder().fit_transform(df['genre'])
-    df['track_id_str'] = df['track_id'].apply(lambda x: f"{int(x):06d}")
+    df['track_id_str'] = df['track_id'].astype(str)
     return df
 
 
@@ -113,7 +115,8 @@ def train_vggish_rf(
     embedding_dir=DEFAULT_EMBEDDING_DIR,
     metadata_file=DEFAULT_METADATA_FILE,
     report_dir=DEFAULT_REPORT_DIR,
-    model_save_path=DEFAULT_MODEL_SAVE_PATH
+    model_save_path=DEFAULT_MODEL_SAVE_PATH,
+    class_names_path=DEFAULT_CLASS_NAMES_PATH
 ):
     print("[INFO] Loading metadata and embeddings...")
     df = load_metadata(metadata_file, embedding_dir)
@@ -128,15 +131,19 @@ def train_vggish_rf(
     clf = train_rf_model(X_train, y_train)
     evaluate_rf_model(clf, X_test, y_test, class_names, report_dir)
     joblib.dump(clf, model_save_path)
-    np.save(os.path.join(report_dir, "vggish_rf_class_names.npy"), class_names)
+    np.save(class_names_path, class_names)
     print(f"[INFO] Saved trained model to {model_save_path}")
     return class_names
 
 
-def evaluate_on_new_embeddings(model_path, embedding_dir, metadata_file, report_dir, class_names):
+def evaluate_on_new_embeddings(model_path, embedding_dir, metadata_file, report_dir):
     print("[INFO] Evaluating on new embeddings...")
     df = load_metadata(metadata_file, embedding_dir)
-    df['label'] = LabelEncoder().fit_transform(df["genre"])
+
+    label_encoder = LabelEncoder().fit(df["genre"])
+    df['label'] = label_encoder.transform(df["genre"])
+    class_names = label_encoder.classes_
+
     X, y, _ = load_embeddings(df, embedding_dir)
     clf = joblib.load(model_path)
     evaluate_rf_model(clf, X, y, class_names, report_dir)
