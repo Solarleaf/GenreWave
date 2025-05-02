@@ -1,4 +1,4 @@
-# L 4-23-25
+# L 4-23-25 [milestone: cnn_inference_ready]
 # notebooks/step_3_2_CNN_Spectro.py
 
 import os
@@ -21,8 +21,9 @@ EPOCHS = 5
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "../spectrograms")
 REPORT_DIR = os.path.join(BASE_DIR, "../reports/3_CNN_Spectrogram_Classifier")
-MODEL_PATH = os.path.join(REPORT_DIR, "cnn_model.pth")
-BUNDLE_PATH = os.path.join(REPORT_DIR, "cnn_inference_bundle.pth")
+MODEL_DIR = os.path.join(BASE_DIR, "../models")
+MODEL_PATH = os.path.join(MODEL_DIR, "cnn_model.pth")
+BUNDLE_PATH = os.path.join(MODEL_DIR, "cnn_inference_bundle.pth")
 
 
 class SimpleCNN(nn.Module):
@@ -47,13 +48,15 @@ class SimpleCNN(nn.Module):
 
 
 def cnn_predict_folder(bundle_path, image_dir):
-    bundle = torch.load(bundle_path, map_location=torch.device('cpu'))
+    bundle = torch.load(bundle_path, map_location=torch.device(
+        'cpu'), weights_only=False)
 
     model = SimpleCNN(num_classes=len(bundle['class_names']))
     model.load_state_dict(bundle['model_state_dict'])
     model.eval()
 
     transform = bundle['transform']
+
     class_names = bundle['class_names']
 
     predictions = []
