@@ -40,16 +40,16 @@ music-genre-classifier/
 ├── spectrograms/
 │   ├── [genre folders]/                  # Spectrogram images if generated
 │   └── spectrograms.md                   # Notes on how they're created and used
+│notebooks/
 │
-├── notebooks/
-│   ├── 1_Explore_Metadata.ipynb          # Metadata exploration and cleanup
-│   ├── 2_MFCC_RF_Classifier.ipynb        # MFCC feature extraction and RF training
-│   ├── 3.1_Generate_Spectrograms.ipynb   # Convert audio to spectrogram images
-│   ├── 3.2_CNN_Spectrogram_Classifier.ipynb  # Train SimpleCNN on spectrograms
-│   ├── 3.3_CNN_Spectrogram_Classifier_v2.ipynb  # Train CNNv2 (deeper)
-│   ├── LSTM_MFCC.ipynb                   # Train LSTM using MFCC sequences
-│   ├── classify_new_song.ipynb           # 🟢 Classify new songs using RF only (latest)
-│   └── notebooks.md                      # Notes about notebook order and usage
+├── step_1_Explore_Metadata.ipynb           # Exploratory analysis of genre metadata
+├── step_2_MFCC_RF_Classifier.ipynb         # Random Forest classifier using MFCC features
+├── step_3_1_Gen_Spectro.py                 # Spectrogram generation for training/inference
+├── step_3_2_CNN_Spectro.py                 # CNN training + inference (with bundled model export)
+├── step_final_classify.ipynb               # Combined inference pipeline for RF + CNN on new songs
+│
+├── notebooks.md                            # Internal development notes
+├── Void/                                   # (staging/deprecated or sandbox workspace)
 │
 ├── project.md                            # Project log, iterations, session summaries
 ├── code_structure.md                     # Summary of functions/classes in notebooks
