@@ -1,58 +1,51 @@
-music-genre-classifier/
+Genrewave/
 ├── data/
-│   ├── fma_small/                        # 30s audio clips for training
-│   ├── fma_metadata/                     # Original metadata: tracks.csv, genres.csv
-│   ├── valid_track_genres.csv            # Cleaned metadata used in model
-│   ├── overall_tracks.csv                # Full metadata before filtering
-│   ├── Songs/                            # New songs to classify (organized by genre folders)
-│   └── readme.md                         # Notes on dataset usage
+│   ├── fma_metadata/                  # Initial Metadata
+│   ├── fma_small/                     # Training audio (FMA, genre labeled)
+│   ├── songs/                         # New songs to classify (by genre folder)
+│   ├── metadata.csv                   # Combined metadata from training + inference sets
+│   └── 0_readme.md                    # Notes on dataset organization
 │
-├── features/
-│   ├── mfcc_features.npz                 # MFCC features extracted from training set
-│   ├── rf_test_outputs.npz               # RF test data and predictions
-│   ├── lstm_mfcc/                        # Sequence features for LSTM (if applicable)
-│   └── features.md                       # Notes on how features were extracted
+├── features/                          # Used to train data
 │
 ├── models/
-│   ├── rf_model.pkl                      # Trained Random Forest model
-│   ├── cnn_model.pth                     # SimpleCNN model (if used)
-│   ├── best_cnnv2_model.pth              # Best CNNv2 model
-│   ├── cnn_inference_bundle.pth          # Includes model, transform, label map (SimpleCNN)
-│   ├── cnnv2_inference_bundle.pth        # Same for CNNv2
-│   ├── lstm_genre_classifier.pth         # Trained LSTM model (if used)
-│   └── models.md                         # Notes about model configs and versions
+│   ├── rf_model.pkl                   # MFCC Random Forest
+│   ├── vggish_rf_model.pkl            # VGGish Random Forest
+│   ├── cnn_model.pth                  # CNN PyTorch model
+│   ├── cnn_inference_bundle.pth       # CNN model + transform + label map
+│   └── 0_models.md                    # Notes on organization
+│
+├── notebooks/
+│   ├── step_1_Explore_Metadata.ipynb     # EDA on FMA metadata
+│   ├── step_2_MFCC_RF.ipynb              # RF on MFCC features
+│   ├── step_3_1_Gen_Spectro.py           # Generate spectrogram images
+│   ├── step_3_2_CNN_Spectro.py           # CNN training/inference
+│   ├── step_4_1_Gen_vggish_embed.py      # Create VGGish embeddings + metadata
+│   ├── step_4_2_Vggish_Class.py          # Train/eval RF using VGGish embeddings
+│   ├── step_final_classify.ipynb         # Full inference pipeline (CNN + RF + VGGish RF)
+│   └── 0_notebooks.md                    # Notes on organization
 │
 ├── reports/
-│   ├── 1_Explore_Metadata/               # EDA visualizations and filtering steps
-│   ├── 2_MFCC_RF_Classifier/             # RF training evaluation outputs
-│   ├── 3_CNN_Spectrogram_Classifier/     # CNN results (if enabled)
-│   ├── 3_CNNv2_Spectrogram_Classifier/   # CNNv2 results (if enabled)
-│   └── 4_Classify_New_Song/
-│       └── RF/                           # Evaluation results from classify_new_song.ipynb (RF only)
-│           ├── rf_model_predictions.csv
-│           ├── rf_classification_report.txt
-│           ├── rf_confusion_matrix.png
-│           ├── rf_precision_bar.png
-│           ├── rf_recall_bar.png
-│           ├── rf_f1_score_bar.png
-│           └── rf_support_bar.png
+│   ├── step_1_Explore_Metadata/
+│   ├── step_2_MFCC_RF/
+│   ├── step_3_2_CNN_Spectro/
+│   ├── step_4_1_vggish_embeddings/       # All npy embeddings for training
+│   ├── step_4_2_vggish_class/            # VGGish RF reports and plots
+│   ├── step_final_classify/
+│   │   ├── RF/                          # RF MFCC evaluation
+│   │   ├── CNN/                         # CNN evaluation
+│   │   ├── vggish_embeddings/           # Inference-time VGGish song embeddings
+│   │   ├── vggish_metadata_songs.csv    # Metadata for above
+│   │   └── vggish_rf_eval/              # Evaluation reports for song-level VGGish RF
+│   │   └── spectrograms/                # Spectrograms for inference songs
+│   └── 0_reports.md                     # Notes on organization
 │
-├── spectrograms/
-│   ├── [genre folders]/                  # Spectrogram images if generated
-│   └── spectrograms.md                   # Notes on how they're created and used
-│notebooks/
+├── spectrograms/                        # Training-time spectrograms
 │
-├── step_1_Explore_Metadata.ipynb           # Exploratory analysis of genre metadata
-├── step_2_MFCC_RF_Classifier.ipynb         # Random Forest classifier using MFCC features
-├── step_3_1_Gen_Spectro.py                 # Spectrogram generation for training/inference
-├── step_3_2_CNN_Spectro.py                 # CNN training + inference (with bundled model export)
-├── step_final_classify.ipynb               # Combined inference pipeline for RF + CNN on new songs
-│
-├── notebooks.md                            # Internal development notes
-├── Void/                                   # (staging/deprecated or sandbox workspace)
-│
-├── project.md                            # Project log, iterations, session summaries
-├── code_structure.md                     # Summary of functions/classes in notebooks
-├── requirements.txt                      # Python dependencies
-├── Todo.md                               # Remaining work and future goals
-└── UsefulCommands.md                     # Helpful shell commands or scripts
+├── .gitignore
+├── requirements.txt
+├── README.md
+├── project.md                           # Session logs, next steps, known issues
+├── code_structure.md                    # Function/class index across notebooks
+├── UsefulCommands.md                    # Shell scripts or shortcuts
+└── Layout.model.txt                     # This file
