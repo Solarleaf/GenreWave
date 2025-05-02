@@ -20,7 +20,7 @@ EPOCHS = 5
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "../spectrograms")
-REPORT_DIR = os.path.join(BASE_DIR, "../reports/3_CNN_Spectrogram_Classifier")
+REPORT_DIR = os.path.join(BASE_DIR, "../reports/step_3_2_CNN_Spectro.py")
 MODEL_DIR = os.path.join(BASE_DIR, "../models")
 MODEL_PATH = os.path.join(MODEL_DIR, "cnn_model.pth")
 BUNDLE_PATH = os.path.join(MODEL_DIR, "cnn_inference_bundle.pth")
