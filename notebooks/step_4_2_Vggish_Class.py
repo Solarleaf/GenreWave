@@ -28,9 +28,9 @@ def load_metadata(metadata_file, embedding_dir):
     df = pd.read_csv(metadata_file, dtype={"track_id": str})
     available_ids = {f.split(".")[0] for f in os.listdir(
         embedding_dir) if f.endswith(".npy")}
-    df = df[df["track_id"].astype(str).isin(available_ids)]
+    df = df[df["track_id"].isin(available_ids)]
     df['label'] = LabelEncoder().fit_transform(df['genre'])
-    df['track_id_str'] = df['track_id'].astype(str)
+    df['track_id_str'] = df['track_id']
     return df
 
 
@@ -49,6 +49,13 @@ def load_embeddings(df, embedding_dir):
                 mean_embedding = embedding
             else:
                 print(f"[SKIP] {track_id}: Unexpected shape {embedding.shape}")
+                missing.append(track_id)
+                continue
+
+            # Expected VGGish embedding size
+            if mean_embedding.shape != (128,):
+                print(
+                    f"[SKIP] {track_id}: Invalid embedding shape {mean_embedding.shape}")
                 missing.append(track_id)
                 continue
 
@@ -85,18 +92,15 @@ def evaluate_rf_model(clf, X_test, y_test, class_names, report_dir):
     plt.yticks(tick_marks, class_names)
     plt.xlabel("Predicted")
     plt.ylabel("True")
-
     for i in range(cm.shape[0]):
         for j in range(cm.shape[1]):
-            plt.text(j, i, format(cm[i, j], 'd'),
-                     ha="center", va="center",
+            plt.text(j, i, format(cm[i, j], 'd'), ha="center", va="center",
                      color="white" if cm[i, j] > cm.max() / 2 else "black")
-
     plt.tight_layout()
     plt.savefig(os.path.join(report_dir, "vggish_rf_confusion_matrix.png"))
     plt.close()
 
-    precision, recall, f1, support = precision_recall_fscore_support(
+    precision, recall, f1, _ = precision_recall_fscore_support(
         y_test, y_pred, labels=range(len(class_names)), zero_division=0
     )
     for metric_name, values in zip(["Precision", "Recall", "F1-Score"], [precision, recall, f1]):
@@ -133,17 +137,13 @@ def train_vggish_rf(
     joblib.dump(clf, model_save_path)
     np.save(class_names_path, class_names)
     print(f"[INFO] Saved trained model to {model_save_path}")
-    return class_names
 
 
-def evaluate_on_new_embeddings(model_path, embedding_dir, metadata_file, report_dir):
+def evaluate_on_new_embeddings(model_path, embedding_dir, metadata_file, report_dir, class_names_path=DEFAULT_CLASS_NAMES_PATH):
     print("[INFO] Evaluating on new embeddings...")
     df = load_metadata(metadata_file, embedding_dir)
-
-    label_encoder = LabelEncoder().fit(df["genre"])
-    df['label'] = label_encoder.transform(df["genre"])
-    class_names = label_encoder.classes_
-
+    df['label'] = LabelEncoder().fit_transform(df["genre"])
+    class_names = np.load(class_names_path, allow_pickle=True)
     X, y, _ = load_embeddings(df, embedding_dir)
     clf = joblib.load(model_path)
     evaluate_rf_model(clf, X, y, class_names, report_dir)
