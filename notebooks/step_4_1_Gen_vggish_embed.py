@@ -57,7 +57,7 @@ def generate_vggish_embeddings(mp3_root=DEFAULT_MP3_ROOT, output_dir=DEFAULT_OUT
 
                 np.save(out_path, song_embedding)
                 metadata_records.append(
-                    {"track_id": int(track_id), "genre": genre_folder})
+                    {"track_id": track_id, "genre": genre_folder})
                 success_count += 1
 
             except Exception as e:
@@ -66,7 +66,8 @@ def generate_vggish_embeddings(mp3_root=DEFAULT_MP3_ROOT, output_dir=DEFAULT_OUT
 
     # Load existing metadata if present
     if os.path.exists(metadata_path):
-        existing_df = pd.read_csv(metadata_path)
+        existing_df = pd.read_csv(metadata_path, dtype={"track_id": str})
+
         metadata_df = pd.DataFrame(metadata_records)
         combined_df = pd.concat([existing_df, metadata_df], ignore_index=True)
         combined_df.drop_duplicates(subset="track_id", inplace=True)
