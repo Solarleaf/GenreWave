@@ -149,5 +149,23 @@ def evaluate_on_new_embeddings(model_path, embedding_dir, metadata_file, report_
     evaluate_rf_model(clf, X, y, class_names, report_dir)
 
 
+def predict_vggish_for_files(model_path, embedding_dir, metadata_file, class_names_path=DEFAULT_CLASS_NAMES_PATH):
+    df = load_metadata(metadata_file, embedding_dir)
+    class_names = np.load(class_names_path, allow_pickle=True)
+    clf = joblib.load(model_path)
+    X, _, missing = load_embeddings(df, embedding_dir)
+
+    preds = clf.predict(X)
+    track_ids = df["track_id"].values
+    genres = df["genre"].values
+    pred_labels = [class_names[p] for p in preds]
+
+    return pd.DataFrame({
+        "file": [f"{tid}.mp3" for tid in track_ids],
+        "true_genre": genres,
+        "VGGISH": pred_labels
+    })
+
+
 if __name__ == "__main__":
     train_vggish_rf()
