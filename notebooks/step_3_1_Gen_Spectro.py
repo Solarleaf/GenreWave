@@ -1,5 +1,5 @@
 # step_3_1_Gen_Spectro.py
-# Converted from Jupyter Notebook to standalone script (L 4-23-25)
+# L 4-24-25
 
 import os
 import gc
