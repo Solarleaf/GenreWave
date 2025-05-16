@@ -1,4 +1,4 @@
-# L 4-23-25 [milestone: cnn_inference_ready]
+# L 4-23-25
 # notebooks/step_3_2_CNN_Spectro.py
 
 import os

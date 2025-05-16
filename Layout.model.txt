@@ -1,51 +1,84 @@
 Genrewave/
-├── data/
-│   ├── fma_metadata/                  # Initial Metadata
-│   ├── fma_small/                     # Training audio (FMA, genre labeled)
-│   ├── songs/                         # New songs to classify (by genre folder)
-│   ├── metadata.csv                   # Combined metadata from training + inference sets
-│   └── 0_readme.md                    # Notes on dataset organization
+├── .github/
+│   └── workflows/
+│       └── tests.yml                     # CI config (likely model testing or linting)
 │
-├── features/                          # Used to train data
+├── data/
+│   ├── fma_metadata/                     # Initial raw + cleaned FMA metadata
+│   │   ├── checksums/
+│   │   ├── echonest.csv
+│   │   ├── features.csv
+│   │   ├── genres.csv
+│   │   ├── raw_*.csv                     # Unprocessed FMA files
+│   │   ├── tracks.csv
+│   │   └── README.md
+│   ├── fma_small/                        # Training audio files (genre-labeled)
+│   ├── songs/                            # Unlabeled songs to classify
+│   ├── vggish_embeddings_v2/            # Newer VGGish `.npy` embeddings
+│   ├── metadata.csv                      # Unified metadata (training + songs)
+│   └── readme.md                         # Notes on data layout
+│
+├── features/                             # Derived features for model training
 │
 ├── models/
-│   ├── rf_model.pkl                   # MFCC Random Forest
-│   ├── vggish_rf_model.pkl            # VGGish Random Forest
-│   ├── cnn_model.pth                  # CNN PyTorch model
-│   ├── cnn_inference_bundle.pth       # CNN model + transform + label map
-│   └── 0_models.md                    # Notes on organization
+│   ├── rf_model.pkl                      # Trained RF on MFCC
+│   ├── vggish_rf_model.pkl               # RF on VGGish embeddings
+│   ├── cnn_model.pth                     # CNN on spectrograms (raw model)
+│   ├── cnn_inference_bundle.pth          # CNN + transforms + label map
+│   └── 0_models.md                       # Notes on model formats
 │
 ├── notebooks/
-│   ├── step_1_Explore_Metadata.ipynb     # EDA on FMA metadata
-│   ├── step_2_MFCC_RF.ipynb              # RF on MFCC features
-│   ├── step_3_1_Gen_Spectro.py           # Generate spectrogram images
-│   ├── step_3_2_CNN_Spectro.py           # CNN training/inference
-│   ├── step_4_1_Gen_vggish_embed.py      # Create VGGish embeddings + metadata
-│   ├── step_4_2_Vggish_Class.py          # Train/eval RF using VGGish embeddings
-│   ├── step_final_classify.ipynb         # Full inference pipeline (CNN + RF + VGGish RF)
-│   └── 0_notebooks.md                    # Notes on organization
+│   ├── readme.md                         # Notes on primary pipeline
+│   ├── step_1_Explore_Metadata.ipynb     # Metadata EDA
+│   ├── step_2_MFCC_RF.ipynb              # MFCC + Random Forest
+│   ├── step_3_1_Gen_Spectro.py           # Audio to spectrograms
+│   ├── step_3_2_CNN_Spectro.py           # CNN training + inference
+│   ├── step_4_1_Gen_vggish_embed.py      # VGGish embedding generation
+│   ├── step_4_2_Vggish_Class.py          # RF on VGGish embeddings
+│   ├── step_final_classify.ipynb         # Inference pipeline combining all models
+│   └── Void/                             # TBD (unclassified code or deprecated)
 │
-├── reports/
+├── notebooks_secondary/                  # Experimental models and variants
+│   ├── 3.3_CNN_Spectrogram_Classifier_v2.ipynb
+│   ├── LSTM_Classifier.ipynb             # RNN on spectrograms or features
+│   ├── LSTM_MFCC.ipynb                   # RNN on MFCCs
+│   ├── Yamnet.ipynb                      # Audio classification using YAMNet
+│   └── void/                             # TBD (deprecated/old staging)
+│
+├── reports/                              # Model evaluation outputs
 │   ├── step_1_Explore_Metadata/
 │   ├── step_2_MFCC_RF/
-│   ├── step_3_2_CNN_Spectro/
-│   ├── step_4_1_vggish_embeddings/       # All npy embeddings for training
-│   ├── step_4_2_vggish_class/            # VGGish RF reports and plots
+│   ├── step_3_2_CNN_Spectro.py/
+│   ├── step_4_1_vggish_embeddings/
+│   ├── step_4_2_vggish_class/
 │   ├── step_final_classify/
-│   │   ├── RF/                          # RF MFCC evaluation
-│   │   ├── CNN/                         # CNN evaluation
-│   │   ├── vggish_embeddings/           # Inference-time VGGish song embeddings
-│   │   ├── vggish_metadata_songs.csv    # Metadata for above
-│   │   └── vggish_rf_eval/              # Evaluation reports for song-level VGGish RF
-│   │   └── spectrograms/                # Spectrograms for inference songs
-│   └── 0_reports.md                     # Notes on organization
+│   │   ├── RF/
+│   │   ├── CNN/
+│   │   ├── vggish_embeddings/
+│   │   ├── vggish_metadata_songs.csv
+│   │   ├── vggish_rf_eval/
+│   │   └── spectrograms/                # Inference-time spectrogram visualizations
+│   ├── KNN/                              # KNN evaluation (experimental)
+│   ├── lstm_mfcc/                        # LSTM on MFCC results
+│   ├── Yamnet/                           # YAMNet output logs
+│   └── 0_reports.md                      # Report index or notes
 │
-├── spectrograms/                        # Training-time spectrograms
+├── spectrograms/                         # Training-time genre-separated spectrograms
+│   ├── Electronic/
+│   ├── Experimental/
+│   ├── Folk/
+│   ├── Hip-Hop/
+│   ├── Instrumental/
+│   ├── International/
+│   ├── Pop/
+│   ├── Rock/
+│   └── spectrograms.md                   # Notes on generation and usage
 │
 ├── .gitignore
 ├── requirements.txt
-├── README.md
-├── project.md                           # Session logs, next steps, known issues
-├── code_structure.md                    # Function/class index across notebooks
-├── UsefulCommands.md                    # Shell scripts or shortcuts
-└── Layout.model.txt                     # This file
+├── README.md                             # Project overview and usage
+├── project.md                            # Maintained session log, issues, roadmap
+├── code_structure.md                     # Index of all code by file and function
+├── UsefulCommands.md                     # Shell scripts and CLI helpers
+├── Todo.md                               # External TODO list (being merged into project.md)
+└── Layout.model.txt                      # Possibly auto-generated model file layout

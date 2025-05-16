@@ -84,6 +84,7 @@ notebooks/.tfhub_cache/
 
 # Data 
 musicData/
+TempNotes/
 
 # Python cache
 __pycache__/
