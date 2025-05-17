@@ -24,7 +24,6 @@ DEFAULT_OUTPUT_DIR = os.path.join(PROJECT_ROOT, "spectrograms")
 
 
 def generate_spectrogram(input_path, output_path, img_size=IMG_SIZE):
-    """Generate and save mel-spectrogram for a given audio file."""
     try:
         y, sr = librosa.load(input_path, sr=None, duration=30)
         S = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
